@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>my-project</artifactId>
+        <groupId>com.ice.mark</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>mybatis-generator</artifactId>
+    <packaging>pom</packaging>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+                <property>
+                    <name>env.type</name>
+                    <value>dev</value>
+                </property>
+            </activation>
+            <properties>
+                <mbg.config.xml>${basedir}/src/main/resources/mybatis-generator.xml</mbg.config.xml>
+                <env.dir>classpath:/config/dev</env.dir>
+                <common.dir>classpath:/config/dev</common.dir>
+                <log.appender>console</log.appender>
+                <log.level>INFO</log.level>
+                <roma.agent.host>10.241.11.117</roma.agent.host>
+            </properties>
+        </profile>
+    </profiles>
+    <modules>
+        <module>my-util</module>
+    </modules>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <configuration>
+                    <configurationFile>${mbg.config.xml}</configurationFile>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

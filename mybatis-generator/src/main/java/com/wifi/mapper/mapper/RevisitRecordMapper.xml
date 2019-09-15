@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wifi.mapper.mapper.RevisitRecordMapper">
+  <resultMap id="BaseResultMap" type="com.wifi.model.model.RevisitRecord">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="uhid" jdbcType="VARCHAR" property="uhid" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="gender" jdbcType="CHAR" property="gender" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="contact1" jdbcType="VARCHAR" property="contact1" />
+    <result column="telephone1" jdbcType="VARCHAR" property="telephone1" />
+    <result column="contact2" jdbcType="VARCHAR" property="contact2" />
+    <result column="telephone2" jdbcType="VARCHAR" property="telephone2" />
+    <result column="revisit_time" jdbcType="TIMESTAMP" property="revisitTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, uhid, name, gender, age, contact1, telephone1, contact2, telephone2, revisit_time, 
+    create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from revisit_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from revisit_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wifi.model.model.RevisitRecord">
+    insert into revisit_record (id, uhid, name, 
+      gender, age, contact1, 
+      telephone1, contact2, telephone2, 
+      revisit_time, create_time, update_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{uhid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{gender,jdbcType=CHAR}, #{age,jdbcType=INTEGER}, #{contact1,jdbcType=VARCHAR}, 
+      #{telephone1,jdbcType=VARCHAR}, #{contact2,jdbcType=VARCHAR}, #{telephone2,jdbcType=VARCHAR}, 
+      #{revisitTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wifi.model.model.RevisitRecord">
+    insert into revisit_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uhid != null">
+        uhid,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="contact1 != null">
+        contact1,
+      </if>
+      <if test="telephone1 != null">
+        telephone1,
+      </if>
+      <if test="contact2 != null">
+        contact2,
+      </if>
+      <if test="telephone2 != null">
+        telephone2,
+      </if>
+      <if test="revisitTime != null">
+        revisit_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uhid != null">
+        #{uhid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=CHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="contact1 != null">
+        #{contact1,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone1 != null">
+        #{telephone1,jdbcType=VARCHAR},
+      </if>
+      <if test="contact2 != null">
+        #{contact2,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone2 != null">
+        #{telephone2,jdbcType=VARCHAR},
+      </if>
+      <if test="revisitTime != null">
+        #{revisitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wifi.model.model.RevisitRecord">
+    update revisit_record
+    <set>
+      <if test="uhid != null">
+        uhid = #{uhid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=CHAR},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="contact1 != null">
+        contact1 = #{contact1,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone1 != null">
+        telephone1 = #{telephone1,jdbcType=VARCHAR},
+      </if>
+      <if test="contact2 != null">
+        contact2 = #{contact2,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone2 != null">
+        telephone2 = #{telephone2,jdbcType=VARCHAR},
+      </if>
+      <if test="revisitTime != null">
+        revisit_time = #{revisitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wifi.model.model.RevisitRecord">
+    update revisit_record
+    set uhid = #{uhid,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=CHAR},
+      age = #{age,jdbcType=INTEGER},
+      contact1 = #{contact1,jdbcType=VARCHAR},
+      telephone1 = #{telephone1,jdbcType=VARCHAR},
+      contact2 = #{contact2,jdbcType=VARCHAR},
+      telephone2 = #{telephone2,jdbcType=VARCHAR},
+      revisit_time = #{revisitTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

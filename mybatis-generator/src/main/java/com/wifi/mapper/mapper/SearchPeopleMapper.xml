@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wifi.mapper.mapper.SearchPeopleMapper">
+    <resultMap id="BaseResultMap" type="com.wifi.model.model.SearchPeople">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="uhid" jdbcType="VARCHAR" property="uhid"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="display_title" jdbcType="VARCHAR" property="displayTitle"/>
+        <result column="gender" jdbcType="CHAR" property="gender"/>
+        <result column="age" jdbcType="INTEGER" property="age"/>
+        <result column="lost_img" jdbcType="VARCHAR" property="lostImg"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+        <result column="lost_time" jdbcType="TIMESTAMP" property="lostTime"/>
+        <result column="lost_address" jdbcType="VARCHAR" property="lostAddress"/>
+        <result column="lost_reason" jdbcType="VARCHAR" property="lostReason"/>
+        <result column="find_time" jdbcType="TIMESTAMP" property="findTime"/>
+        <result column="find_address" jdbcType="VARCHAR" property="findAddress"/>
+        <result column="rescue_unit" jdbcType="VARCHAR" property="rescueUnit"/>
+        <result column="identification_img" jdbcType="VARCHAR" property="identificationImg"/>
+        <result column="contact1" jdbcType="VARCHAR" property="contact1"/>
+        <result column="telephone1" jdbcType="VARCHAR" property="telephone1"/>
+        <result column="contact2" jdbcType="VARCHAR" property="contact2"/>
+        <result column="telephone2" jdbcType="VARCHAR" property="telephone2"/>
+        <result column="call_police" jdbcType="INTEGER" property="callPolice"/>
+        <result column="examine_history" jdbcType="VARCHAR" property="examineHistory"/>
+        <result column="push_time" jdbcType="TIMESTAMP" property="pushTime"/>
+        <result column="push_interval" jdbcType="INTEGER" property="pushInterval"/>
+        <result column="push_times" jdbcType="INTEGER" property="pushTimes"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="revisit_record" jdbcType="VARCHAR" property="revisitRecord"/>
+        <result column="stop" jdbcType="VARCHAR" property="stop"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="search_type" jdbcType="INTEGER" property="searchType"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, uhid, name, display_title, gender, age, lost_img, description, lost_time, lost_address, 
+    lost_reason, find_time, find_address, rescue_unit, identification_img, contact1, 
+    telephone1, contact2, telephone2, call_police, examine_history, push_time, push_interval, 
+    push_times, status, revisit_record, stop, create_time, update_time, search_type
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from search_people
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from search_people
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.wifi.model.model.SearchPeople">
+    insert into search_people (id, uhid, name, 
+      display_title, gender, age, 
+      lost_img, description, lost_time, 
+      lost_address, lost_reason, find_time, 
+      find_address, rescue_unit, identification_img, 
+      contact1, telephone1, contact2, 
+      telephone2, call_police, examine_history, 
+      push_time, push_interval, push_times, 
+      status, revisit_record, stop, 
+      create_time, update_time, search_type
+      )
+    values (#{id,jdbcType=INTEGER}, #{uhid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{displayTitle,jdbcType=VARCHAR}, #{gender,jdbcType=CHAR}, #{age,jdbcType=INTEGER}, 
+      #{lostImg,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{lostTime,jdbcType=TIMESTAMP}, 
+      #{lostAddress,jdbcType=VARCHAR}, #{lostReason,jdbcType=VARCHAR}, #{findTime,jdbcType=TIMESTAMP}, 
+      #{findAddress,jdbcType=VARCHAR}, #{rescueUnit,jdbcType=VARCHAR}, #{identificationImg,jdbcType=VARCHAR}, 
+      #{contact1,jdbcType=VARCHAR}, #{telephone1,jdbcType=VARCHAR}, #{contact2,jdbcType=VARCHAR}, 
+      #{telephone2,jdbcType=VARCHAR}, #{callPolice,jdbcType=INTEGER}, #{examineHistory,jdbcType=VARCHAR}, 
+      #{pushTime,jdbcType=TIMESTAMP}, #{pushInterval,jdbcType=INTEGER}, #{pushTimes,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{revisitRecord,jdbcType=VARCHAR}, #{stop,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{searchType,jdbcType=INTEGER}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.wifi.model.model.SearchPeople">
+        insert into search_people
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="uhid != null">
+                uhid,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="displayTitle != null">
+                display_title,
+            </if>
+            <if test="gender != null">
+                gender,
+            </if>
+            <if test="age != null">
+                age,
+            </if>
+            <if test="lostImg != null">
+                lost_img,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+            <if test="lostTime != null">
+                lost_time,
+            </if>
+            <if test="lostAddress != null">
+                lost_address,
+            </if>
+            <if test="lostReason != null">
+                lost_reason,
+            </if>
+            <if test="findTime != null">
+                find_time,
+            </if>
+            <if test="findAddress != null">
+                find_address,
+            </if>
+            <if test="rescueUnit != null">
+                rescue_unit,
+            </if>
+            <if test="identificationImg != null">
+                identification_img,
+            </if>
+            <if test="contact1 != null">
+                contact1,
+            </if>
+            <if test="telephone1 != null">
+                telephone1,
+            </if>
+            <if test="contact2 != null">
+                contact2,
+            </if>
+            <if test="telephone2 != null">
+                telephone2,
+            </if>
+            <if test="callPolice != null">
+                call_police,
+            </if>
+            <if test="examineHistory != null">
+                examine_history,
+            </if>
+            <if test="pushTime != null">
+                push_time,
+            </if>
+            <if test="pushInterval != null">
+                push_interval,
+            </if>
+            <if test="pushTimes != null">
+                push_times,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="revisitRecord != null">
+                revisit_record,
+            </if>
+            <if test="stop != null">
+                stop,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="searchType != null">
+                search_type,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="uhid != null">
+                #{uhid,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">zzzzzzzzz
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="displayTitle != null">
+                #{displayTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="gender != null">
+                #{gender,jdbcType=CHAR},
+            </if>
+            <if test="age != null">
+                #{age,jdbcType=INTEGER},
+            </if>
+            <if test="lostImg != null">
+                #{lostImg,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="lostTime != null">
+                #{lostTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lostAddress != null">
+                #{lostAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="lostReason != null">
+                #{lostReason,jdbcType=VARCHAR},
+            </if>
+            <if test="findTime != null">
+                #{findTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="findAddress != null">
+                #{findAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="rescueUnit != null">
+                #{rescueUnit,jdbcType=VARCHAR},
+            </if>
+            <if test="identificationImg != null">
+                #{identificationImg,jdbcType=VARCHAR},
+            </if>
+            <if test="contact1 != null">
+                #{contact1,jdbcType=VARCHAR},
+            </if>
+            <if test="telephone1 != null">
+                #{telephone1,jdbcType=VARCHAR},
+            </if>
+            <if test="contact2 != null">
+                #{contact2,jdbcType=VARCHAR},
+            </if>
+            <if test="telephone2 != null">
+                #{telephone2,jdbcType=VARCHAR},
+            </if>
+            <if test="callPolice != null">
+                #{callPolice,jdbcType=INTEGER},
+            </if>
+            <if test="examineHistory != null">
+                #{examineHistory,jdbcType=VARCHAR},
+            </if>
+            <if test="pushTime != null">
+                #{pushTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="pushInterval != null">
+                #{pushInterval,jdbcType=INTEGER},
+            </if>
+            <if test="pushTimes != null">
+                #{pushTimes,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="revisitRecord != null">
+                #{revisitRecord,jdbcType=VARCHAR},
+            </if>
+            <if test="stop != null">
+                #{stop,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="searchType != null">
+                #{searchType,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.wifi.model.model.SearchPeople">
+        update search_people
+        <set>
+            <if test="uhid != null">
+                uhid = #{uhid,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="displayTitle != null">
+                display_title = #{displayTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="gender != null">
+                gender = #{gender,jdbcType=CHAR},
+            </if>
+            <if test="age != null">
+                age = #{age,jdbcType=INTEGER},
+            </if>
+            <if test="lostImg != null">
+                lost_img = #{lostImg,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="lostTime != null">
+                lost_time = #{lostTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lostAddress != null">
+                lost_address = #{lostAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="lostReason != null">
+                lost_reason = #{lostReason,jdbcType=VARCHAR},
+            </if>
+            <if test="findTime != null">
+                find_time = #{findTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="findAddress != null">
+                find_address = #{findAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="rescueUnit != null">
+                rescue_unit = #{rescueUnit,jdbcType=VARCHAR},
+            </if>
+            <if test="identificationImg != null">
+                identification_img = #{identificationImg,jdbcType=VARCHAR},
+            </if>
+            <if test="contact1 != null">
+                contact1 = #{contact1,jdbcType=VARCHAR},
+            </if>
+            <if test="telephone1 != null">
+                telephone1 = #{telephone1,jdbcType=VARCHAR},
+            </if>
+            <if test="contact2 != null">
+                contact2 = #{contact2,jdbcType=VARCHAR},
+            </if>
+            <if test="telephone2 != null">
+                telephone2 = #{telephone2,jdbcType=VARCHAR},
+            </if>
+            <if test="callPolice != null">
+                call_police = #{callPolice,jdbcType=INTEGER},
+            </if>
+            <if test="examineHistory != null">
+                examine_history = #{examineHistory,jdbcType=VARCHAR},
+            </if>
+            <if test="pushTime != null">
+                push_time = #{pushTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="pushInterval != null">
+                push_interval = #{pushInterval,jdbcType=INTEGER},
+            </if>
+            <if test="pushTimes != null">
+                push_times = #{pushTimes,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="revisitRecord != null">
+                revisit_record = #{revisitRecord,jdbcType=VARCHAR},
+            </if>
+            <if test="stop != null">
+                stop = #{stop,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="searchType != null">
+                search_type = #{searchType,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.wifi.model.model.SearchPeople">
+    update search_people
+    set uhid = #{uhid,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      display_title = #{displayTitle,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=CHAR},
+      age = #{age,jdbcType=INTEGER},
+      lost_img = #{lostImg,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      lost_time = #{lostTime,jdbcType=TIMESTAMP},
+      lost_address = #{lostAddress,jdbcType=VARCHAR},
+      lost_reason = #{lostReason,jdbcType=VARCHAR},
+      find_time = #{findTime,jdbcType=TIMESTAMP},
+      find_address = #{findAddress,jdbcType=VARCHAR},
+      rescue_unit = #{rescueUnit,jdbcType=VARCHAR},
+      identification_img = #{identificationImg,jdbcType=VARCHAR},
+      contact1 = #{contact1,jdbcType=VARCHAR},
+      telephone1 = #{telephone1,jdbcType=VARCHAR},
+      contact2 = #{contact2,jdbcType=VARCHAR},
+      telephone2 = #{telephone2,jdbcType=VARCHAR},
+      call_police = #{callPolice,jdbcType=INTEGER},
+      examine_history = #{examineHistory,jdbcType=VARCHAR},
+      push_time = #{pushTime,jdbcType=TIMESTAMP},
+      push_interval = #{pushInterval,jdbcType=INTEGER},
+      push_times = #{pushTimes,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      revisit_record = #{revisitRecord,jdbcType=VARCHAR},
+      stop = #{stop,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      search_type = #{searchType,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
