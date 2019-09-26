@@ -3,6 +3,7 @@
 <mapper namespace="com.wifi.mapper.mapper.RevisitRecordMapper">
   <resultMap id="BaseResultMap" type="com.wifi.model.model.RevisitRecord">
     <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="people_id" jdbcType="INTEGER" property="peopleId" />
     <result column="uhid" jdbcType="VARCHAR" property="uhid" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="gender" jdbcType="CHAR" property="gender" />
@@ -14,10 +15,12 @@
     <result column="revisit_time" jdbcType="TIMESTAMP" property="revisitTime" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, uhid, name, gender, age, contact1, telephone1, contact2, telephone2, revisit_time, 
-    create_time, update_time
+    id, people_id, uhid, name, gender, age, contact1, telephone1, contact2, telephone2, 
+    revisit_time, create_time, update_time, status, remark
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -30,22 +33,25 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.wifi.model.model.RevisitRecord">
-    insert into revisit_record (id, uhid, name, 
-      gender, age, contact1, 
+    insert into revisit_record (id, people_id, uhid, 
+      name, gender, age, contact1, 
       telephone1, contact2, telephone2, 
-      revisit_time, create_time, update_time
-      )
-    values (#{id,jdbcType=INTEGER}, #{uhid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{gender,jdbcType=CHAR}, #{age,jdbcType=INTEGER}, #{contact1,jdbcType=VARCHAR}, 
+      revisit_time, create_time, update_time, 
+      status, remark)
+    values (#{id,jdbcType=INTEGER}, #{peopleId,jdbcType=INTEGER}, #{uhid,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{gender,jdbcType=CHAR}, #{age,jdbcType=INTEGER}, #{contact1,jdbcType=VARCHAR}, 
       #{telephone1,jdbcType=VARCHAR}, #{contact2,jdbcType=VARCHAR}, #{telephone2,jdbcType=VARCHAR}, 
-      #{revisitTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
-      )
+      #{revisitTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.wifi.model.model.RevisitRecord">
     insert into revisit_record
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
+      </if>
+      <if test="peopleId != null">
+        people_id,
       </if>
       <if test="uhid != null">
         uhid,
@@ -80,10 +86,19 @@
       <if test="updateTime != null">
         update_time,
       </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=INTEGER},
+      </if>
+      <if test="peopleId != null">
+        #{peopleId,jdbcType=INTEGER},
       </if>
       <if test="uhid != null">
         #{uhid,jdbcType=VARCHAR},
@@ -118,11 +133,20 @@
       <if test="updateTime != null">
         #{updateTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.wifi.model.model.RevisitRecord">
     update revisit_record
     <set>
+      <if test="peopleId != null">
+        people_id = #{peopleId,jdbcType=INTEGER},
+      </if>
       <if test="uhid != null">
         uhid = #{uhid,jdbcType=VARCHAR},
       </if>
@@ -156,12 +180,19 @@
       <if test="updateTime != null">
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.wifi.model.model.RevisitRecord">
     update revisit_record
-    set uhid = #{uhid,jdbcType=VARCHAR},
+    set people_id = #{peopleId,jdbcType=INTEGER},
+      uhid = #{uhid,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
       gender = #{gender,jdbcType=CHAR},
       age = #{age,jdbcType=INTEGER},
@@ -171,7 +202,9 @@
       telephone2 = #{telephone2,jdbcType=VARCHAR},
       revisit_time = #{revisitTime,jdbcType=TIMESTAMP},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP}
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

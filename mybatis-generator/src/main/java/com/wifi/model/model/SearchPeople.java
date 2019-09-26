@@ -7,7 +7,7 @@ import java.util.Date;
  * 
  * table name : search_people
  *
- * @create time : 2019-09-05
+ * @create time : 2019-09-22
  */
 public class SearchPeople {
     /**
@@ -15,6 +15,12 @@ public class SearchPeople {
      * column : search_people.id
      */
     private Integer id;
+
+    /**
+     * app_id
+     * column : search_people.app_id
+     */
+    private String appId;
 
     /**
      * UHID
@@ -41,16 +47,16 @@ public class SearchPeople {
     private String gender;
 
     /**
+     * 详细地址
+     * column : search_people.detail_address
+     */
+    private String detailAddress;
+
+    /**
      * 年龄
      * column : search_people.age
      */
     private Integer age;
-
-    /**
-     * 照片
-     * column : search_people.lost_img
-     */
-    private String lostImg;
 
     /**
      * 情况介绍
@@ -93,12 +99,6 @@ public class SearchPeople {
      * column : search_people.rescue_unit
      */
     private String rescueUnit;
-
-    /**
-     * 走失者病例证明或残疾证明
-     * column : search_people.identification_img
-     */
-    private String identificationImg;
 
     /**
      * 联系人1
@@ -190,12 +190,26 @@ public class SearchPeople {
      */
     private Integer searchType;
 
+    /**
+     * 备注
+     * column : search_people.remark
+     */
+    private String remark;
+
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getAppId() {
+        return appId;
+    }
+
+    public void setAppId(String appId) {
+        this.appId = appId;
     }
 
     public String getUhid() {
@@ -230,20 +244,20 @@ public class SearchPeople {
         this.gender = gender;
     }
 
+    public String getDetailAddress() {
+        return detailAddress;
+    }
+
+    public void setDetailAddress(String detailAddress) {
+        this.detailAddress = detailAddress;
+    }
+
     public Integer getAge() {
         return age;
     }
 
     public void setAge(Integer age) {
         this.age = age;
-    }
-
-    public String getLostImg() {
-        return lostImg;
-    }
-
-    public void setLostImg(String lostImg) {
-        this.lostImg = lostImg;
     }
 
     public String getDescription() {
@@ -300,14 +314,6 @@ public class SearchPeople {
 
     public void setRescueUnit(String rescueUnit) {
         this.rescueUnit = rescueUnit;
-    }
-
-    public String getIdentificationImg() {
-        return identificationImg;
-    }
-
-    public void setIdentificationImg(String identificationImg) {
-        this.identificationImg = identificationImg;
     }
 
     public String getContact1() {
@@ -428,5 +434,13 @@ public class SearchPeople {
 
     public void setSearchType(Integer searchType) {
         this.searchType = searchType;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 }

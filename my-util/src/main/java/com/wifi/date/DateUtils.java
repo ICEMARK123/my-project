@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class DateFormatUtil {
+public class DateUtils {
     private static final String DEFAULT_GOOD_FORMAT_OF_FULL_DATE = "yyyy-MM-dd HH:mm:ss";
 
     private DateUtils() {

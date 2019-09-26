@@ -1,17 +1,20 @@
 package com.wifi.mapper.mapper;
 
 import com.wifi.model.model.SearchPeople;
+import com.wifi.model.model.SearchPeopleWithBLOBs;
 
 public interface SearchPeopleMapper {
     int deleteByPrimaryKey(Integer id);
 
-    int insert(SearchPeople record);
+    int insert(SearchPeopleWithBLOBs record);
 
-    int insertSelective(SearchPeople record);
+    int insertSelective(SearchPeopleWithBLOBs record);
 
-    SearchPeople selectByPrimaryKey(Integer id);
+    SearchPeopleWithBLOBs selectByPrimaryKey(Integer id);
 
-    int updateByPrimaryKeySelective(SearchPeople record);
+    int updateByPrimaryKeySelective(SearchPeopleWithBLOBs record);
+
+    int updateByPrimaryKeyWithBLOBs(SearchPeopleWithBLOBs record);
 
     int updateByPrimaryKey(SearchPeople record);
 }

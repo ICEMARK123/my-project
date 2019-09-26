@@ -7,7 +7,7 @@ import java.util.Date;
  * 
  * table name : revisit_record
  *
- * @create time : 2019-09-05
+ * @create time : 2019-09-22
  */
 public class RevisitRecord {
     /**
@@ -15,6 +15,12 @@ public class RevisitRecord {
      * column : revisit_record.id
      */
     private Integer id;
+
+    /**
+     * 寻人id
+     * column : revisit_record.people_id
+     */
+    private Integer peopleId;
 
     /**
      * UHID
@@ -82,12 +88,32 @@ public class RevisitRecord {
      */
     private Date updateTime;
 
+    /**
+     * 1带回访，2已回访
+     * column : revisit_record.status
+     */
+    private Integer status;
+
+    /**
+     * 备注
+     * column : revisit_record.remark
+     */
+    private String remark;
+
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getPeopleId() {
+        return peopleId;
+    }
+
+    public void setPeopleId(Integer peopleId) {
+        this.peopleId = peopleId;
     }
 
     public String getUhid() {
@@ -176,5 +202,21 @@ public class RevisitRecord {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 }
