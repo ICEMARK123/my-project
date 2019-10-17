@@ -1,5 +1,7 @@
 package com.wifi.test;
 
+import com.wifi.comm.EnumType;
+
 /**
  * @Author: lihl01
  * @Date: 2019/9/17 2:30 PM
@@ -21,5 +23,8 @@ public class Test {
         else{
             System.out.println("审核通过");;
         }*/
+
+        System.out.println(EnumType.type1.getType());
+        System.out.println(EnumType.type1.getName());
     }
 }
