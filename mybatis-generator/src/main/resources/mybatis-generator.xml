@@ -11,40 +11,70 @@
 
         <property name="javaFileEncoding" value="UTF-8"/>
 
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+
         <plugin type="com.halo.mybatis.plugin.OverIsMergeablePlugin"/>
+
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+
+        <plugin type="org.mybatis.generator.plugins.SqlMapConfigPlugin">
+            <property name="fileName" value="SqlMapConfig.xml"/>
+            <property name="targetPackage" value="com.wifi.dao"/>
+            <property name="targetProject" value="src/main/resources"/>
+        </plugin>
+
+        <plugin type="org.mybatis.generator.plugins.MapperConfigPlugin">
+            <property name="fileName" value="test.xml"/>
+            <property name="targetPackage" value="com.wifi.dao"/>
+            <property name="targetProject" value="src/main/resources"/>
+        </plugin>
 
         <!--关闭注释 -->
         <commentGenerator type="com.halo.mybatis.plugin.CinemaCommentGenerator"/>
 
         <!--数据库连接信息 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://10.241.11.13:3306/polaris?characterEncoding=utf-8"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/polaris?characterEncoding=utf-8"
                         userId="root"
-                        password="root@123"/>
+                        password="root"/>
 
         <!-- 生成的model 包路径 -->
-        <javaModelGenerator targetPackage="com.wifi.model.model" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.wifi.entity" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="false"/>
         </javaModelGenerator>
 
         <!--生成xml mapper文件 路径 -->
-        <sqlMapGenerator targetPackage="com.wifi.mapper.mapper" targetProject="src/main/java">
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources">
+            <property name="filename" value="Test"/>
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
         <!-- 生成的Dao接口的包路径 -->
         <javaClientGenerator type="XMLMAPPER"
-                             targetPackage="com.wifi.mapper.mapper"
+                             targetPackage="com.wifi.dao"
                              targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
+        
+
         <!-- 指定每个表的生成策略 -->
         <table tableName="search_people" domainObjectName="SearchPeople"
                enableCountByExample="false" enableSelectByExample="false"
-               enableUpdateByExample="false" enableDeleteByExample="false"/>
+               enableUpdateByExample="false" enableDeleteByExample="false">
+            <columnOverride column="display_img" javaType="String" jdbcType="varchar"/>
+            <columnOverride column="lost_img" javaType="String" jdbcType="varchar"/>
+            <columnOverride column="description" javaType="String" jdbcType="varchar"/>
+            <columnOverride column="identification_img" javaType="String" jdbcType="varchar"/>
+            <columnOverride column="revisit_record" javaType="String" jdbcType="varchar"/>
+            <columnOverride column="remark" javaType="String" jdbcType="varchar"/>
+
+        </table>
         <table tableName="revisit_record" domainObjectName="RevisitRecord"
+               enableCountByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false"/>
+        <table tableName="global_setting_cfg" domainObjectName="GlobalSetting"
                enableCountByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" enableDeleteByExample="false"/>
 
