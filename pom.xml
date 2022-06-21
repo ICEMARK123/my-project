@@ -20,7 +20,7 @@
     </parent>
 
     <properties>
-        <mysql.version>5.1.35</mysql.version>
+        <mysql.version>8.0.28</mysql.version>
         <kafka.version>2.3.0</kafka.version>
         <lombok.version>1.18.0</lombok.version>
         <junit.version>4.12</junit.version>
